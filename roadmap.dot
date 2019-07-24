@@ -31,6 +31,7 @@ digraph{
         search_bfs -> search_astar -> search_ida ;
         search_dfs -> search_iter -> search_ida ;
     }/*}}}*/
+
     subgraph cluster_dp{/*{{{*/
         //bgcolor="green";
         dp[label="动态规划"];
@@ -74,6 +75,7 @@ digraph{
             }
         }
     }/*}}}*/
+
     subgraph cluster_string{/*{{{*/
         string[label="字符串"];
         string_stl[label="标准库"];
@@ -586,6 +588,10 @@ digraph{
                 misc_gray_code
         }
     }/*}}}*/
+
+
+    //other relations
+    search_dfs -> dp_memo;
 
     label="知识树 v0.1";
 }
