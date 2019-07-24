@@ -82,15 +82,16 @@ digraph{
         string_match[label="字符串匹配"];
         string_hash[label="哈希"];
         string_pre[label="前缀函数与 KMP 算法"];
+        string_z[label="Z 函数"];
         string_trie[label="字典树"];
-        string_pam[label="回文自动机"];
         string_sa[label="后缀数组"];
+        string_auto[label="自动机"];
         string_ac[label="AC 自动机"];
-        string_sam[label="侯嘴自动机"];
+        string_sam[label="后缀自动机"];
+        string_pam[label="回文自动机"];
         string_suf_tree[label="后缀树"];
         string_manacher[label="Manacher 算法"];
         string_min[label="最小表示法"];
-        string_z[label="Z 函数"];
 
         string -> {
             string_stl,
@@ -98,16 +99,18 @@ digraph{
                 string_hash,
                 string_pre,
                 string_trie,
-                string_pam,
-                string_sa,
-                string_ac,
-                string_sam,
-                string_suf_tree,
+                string_auto,
+                string_sa, string_suf_tree,
                 string_manacher,
-                string_min,
-                string_z
+                string_min
         }
+        string_auto -> { string_ac,string_sam,string_pam}
+        string_pre -> {string_ac,string_z};
+        string_suf_tree -> string_sam;
+        string_trie -> string_ac;
+
     }/*}}}*/
+
     subgraph cluster_math{/*{{{*/
         math[label="数学"];
         math_base[label="进制"];
@@ -593,5 +596,5 @@ digraph{
     //other relations
     search_dfs -> dp_memo;
 
-    label="知识树 v0.1";
+    label="知识树 v0.3";
 }
