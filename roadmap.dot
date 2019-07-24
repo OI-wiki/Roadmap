@@ -3,17 +3,11 @@ digraph{
     node[shape=box,style=filled];
 
     root[label="算法结构"];
-    root -> dp;
-    root -> search;
-    root -> string;
-    root -> math;
-    root -> ds;
-    root -> gra;
-    root -> geometry;
-    root -> misc;
+    root -> { dp, search, string, math, ds, gra, geometry, misc }
 
     subgraph cluster_search{/*{{{*/
         search[label="搜索"];
+        search_opt[label="优化/剪枝"];
         search_dfs[label="深度优先搜索"];
         search_bfs[label="广度优先搜索"];
         search_bidir[label="双向搜索"];
@@ -21,22 +15,21 @@ digraph{
         search_astar[label="A*算法"];
         search_iter[label="迭代加深搜索"];
         search_ida[label="IDA*算法"];
-        search_back[label="回溯法"];
+        //search_back[label="回溯法"];
         search_dlx[label="Dancing Links"];
-        search_opt[label="优化/剪枝"];
 
         search -> {
             search_dfs,
                 search_bfs,
                 search_bidir,
                 search_heuristic,
-                search_astar,
-                search_iter,
-                search_ida,
-                search_back,
-                search_dlx,
-                search_opt
+                //search_back,
+                search_dlx
         }
+        search_dfs -> search_opt ;
+        search_dfs -> search_astar;
+        search_bfs -> search_astar -> search_ida ;
+        search_dfs -> search_iter -> search_ida ;
     }/*}}}*/
     subgraph cluster_dp{/*{{{*/
         //bgcolor="green";
@@ -594,5 +587,5 @@ digraph{
         }
     }/*}}}*/
 
-    label="知识树 v0.0";
+    label="知识树 v0.1";
 }
