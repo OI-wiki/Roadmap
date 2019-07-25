@@ -6,6 +6,10 @@
 
 我们使用 graphviz 生成图片（目前不知道放在哪里用
 
+## 参考资料
+
+https://www.graphviz.org/documentation/
+
 ## To DO List
 
 - [ ] 结点按难度染色
