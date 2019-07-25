@@ -1,9 +1,12 @@
 digraph{
-    graph[rankdir=LR,ranksep=1.5];
-    node[shape=box,style=filled];
+    //overlap = scale ;
+    graph[rankdir=LR,ranksep=1.5,nodesep=1];
+    node[shape=hexagon,style=filled,width=.3,height=.8];
+    edge[len=3.5];
 
     root[label="算法结构"];
-    root -> { dp, search, string, math, ds, gra, geometry, misc }
+    root -> { dp, search, math, gra, ds, geometry, misc }[len=6];
+    root -> string[len=10];
 
     subgraph cluster_search{/*{{{*/
         search[label="搜索"];
@@ -31,7 +34,6 @@ digraph{
         search_bfs -> search_astar -> search_ida ;
         search_dfs -> search_iter -> search_ida ;
     }/*}}}*/
-
     subgraph cluster_dp{/*{{{*/
         //bgcolor="green";
 
@@ -76,16 +78,11 @@ digraph{
                 dp_misc
         }
     }/*}}}*/
-
     subgraph cluster_string{/*{{{*/
         string[label="字符串"];
-        string_stl[label="标准库"];
-        string_match[label="字符串匹配"];
-        string_hash[label="哈希"];
         string_pre[label="前缀函数与 KMP 算法"];
         string_z[label="Z 函数"];
         string_trie[label="字典树"];
-        string_sa[label="后缀数组"];
         string_auto[label="自动机"];
         string_ac[label="AC 自动机"];
         string_sam[label="后缀自动机"];
@@ -93,6 +90,10 @@ digraph{
         string_suf_tree[label="后缀树"];
         string_manacher[label="Manacher 算法"];
         string_min[label="最小表示法"];
+        string_sa[label="后缀数组"];
+        string_stl[label="标准库"];
+        string_hash[label="哈希"];
+        string_match[label="字符串匹配"];
 
         string -> {
             string_stl,
@@ -104,56 +105,53 @@ digraph{
                 string_sa, string_suf_tree,
                 string_manacher,
                 string_min
-        }
+        };
         string_auto -> { string_ac,string_sam,string_pam}
         string_pre -> {string_ac,string_z};
         string_suf_tree -> string_sam;
         string_trie -> string_ac;
 
     }/*}}}*/
-
     subgraph cluster_math { /*{{{*/
         math[label="数学"];
-        math_base[label="进制"];
-        math_bit[label="位运算"];
-        math_bignum[label="高精度"];
-        math_quick_pow[label="快速幂"];
+        math_dictionary[label="分段打表"];
+        math_misc[label="数学杂项"];
 
         subgraph cluster_num_theorem{/*{{{*/
             math_num_theorem[label="初等数论"];
             subgraph cluster_math_div{/*{{{*/
                 math_div[label="整除及其性质"];
-                math_prime[label="素数"];
-                math_gcd[label="最大公约数"];
                 math_euler[label="欧拉函数"];
-                math_fermat[label="欧拉定理 & 费马小定理"];
                 math_sieve[label="筛法"];
                 math_euclidean_like[label="类欧几里德算法"];
+                math_gcd[label="最大公约数"];
+                math_fermat[label="欧拉定理 & 费马小定理"];
+                math_prime[label="素数"];
 
                 math_div -> {
-                    math_prime,
                         math_gcd,
                         math_euler,
                         math_fermat,
+                    math_prime,
                         math_sieve
-                }
+                }[len=3];
                 math_gcd -> math_euclidean_like;
             }/*}}}*/
             subgraph cluster_math_modular{/*{{{*/
                 math_modular[label="同余方程"];
+                math_crt[label="中国剩余定理"];
                 math_bezouts[label="裴蜀定理"];
                 math_inverse[label="乘法逆元"];
                 math_linear_equation[label="线性同余方程"];
                 math_exp_equation[label="指数同余方程"];
-                math_crt[label="中国剩余定理"];
                 math_bsgs[label="BSGS/ExBSGS"];
                 math_primitive_root[label="原根"];
                 math_discrete_log[label="离散对数"];
 
                 math_modular -> {
                     math_inverse,
-                        math_primitive_root,
                         math_linear_equation,
+                        math_primitive_root,
                         math_exp_equation
                 }
                 math_linear_equation -> math_crt;
@@ -182,8 +180,8 @@ digraph{
         }/*}}}*/
         subgraph cluster_math_linear_algebra{/*{{{*/
             math_linear_algebra[label="线性代数"];
-            math_matrix[label="矩阵"];
             math_gauss[label="高斯消元"];
+            math_matrix[label="矩阵"];
             math_basis[label="线性基"];
 
             math_linear_algebra -> {
@@ -204,7 +202,7 @@ digraph{
                 math_stirling,
                     math_catalan,
                     math_fibonacci
-            }
+            };
         }/*}}}*/
         subgraph cluster_math_comb{/*{{{*/
             math_comb[label="组合数学"];
@@ -215,19 +213,18 @@ digraph{
 
             math_comb -> {
                 math_combination,
-                    math_catalan,
-                    math_stirling,
+                    //math_catalan,
+                    //math_stirling,
                     math_inc_exc_pri,
                     math_dra_pri
             }
             math_combination -> math_cantor;
         }/*}}}*/
-        math_complex[label="复数/复平面"];
         subgraph cluster_math_poly{/*{{{*/
             math_poly[label="多项式"];//1
             math_poly_inv_tri_func[label="多项式反三角函数"];//3
-            math_poly_tri_func[label="多项式三角函数"];//4
             math_poly_mul_eval_inter[label="多项式多点求值|快速插值"];//5
+            math_poly_tri_func[label="多项式三角函数"];//4
             math_poly_newton[label="多项式牛顿迭代"];//6
             math_poly_ln_exp[label="多项式对数函数|指数函数"];//7
             math_poly_div_mod[label="多项式除法|取模"];//8
@@ -245,39 +242,30 @@ digraph{
                     math_poly_fwt,
                     math_poly_ntt,
                     math_poly_fft
-
-                        /*math_poly_lagrange_poly,
-                          math_poly_fft,
-                          math_poly_ntt,
-                          math_poly_fwt,
-                          math_poly_inv,
-                          math_poly_sqrt,
-                          math_poly_div_mod,
-                          math_poly_ln_exp,
-                          math_poly_newton,
-                          math_poly_mul_eval_inter,
-                          math_poly_tri_func,
-                          math_poly_inv_tri_func*/
             }
-            {math_poly_ntt,math_poly_fft} -> math_poly_mul;
-            math_poly_mul -> math_poly_inv;
+            { math_poly_ntt, math_poly_fft } -> math_poly_mul;
+            math_poly_mul -> math_poly_inv[len=2];
             math_poly_inv -> {
                 math_poly_ln_exp,
                     math_poly_div_mod,
                     math_poly_sqrt
-            }
+            }[len=2];
             math_poly_ln_exp -> math_poly_tri_func;
             { math_poly_ln_exp,
                 math_poly_sqrt,
-                math_poly_inv} -> math_poly_inv_tri_func;
+                math_poly_inv} -> math_poly_inv_tri_func[len=3];
             math_poly_div_mod -> math_poly_mul_eval_inter;
         }/*}}}*/
-        math_dictionary[label="分段打表"];
+        math_complex[label="复数/复平面"];
+
+        math_base[label="进制"];
+        math_bignum[label="高精度"];
+        math_bit[label="位运算"];
+        math_quick_pow[label="快速幂"];
         math_expectation[label="概率 & 期望"];
         math_permutation_group[label="置换群"];
         math_integral[label="数值积分"];
         math_game_theory[label="博弈论"];
-        math_misc[label="数学杂项"];
 
         math -> {
             math_base,
@@ -295,14 +283,13 @@ digraph{
                 math_linear_programming,
                 math_game_theory,
                 math_misc
-        }
+        };
+        math_misc -> math_dictionary;
         math_complex -> math_poly_fft;
         math_linear_programming -> math_simplex;
         math_base -> math_bignum;
         math_linear_algebra -> math_linear_programming;
-        math_misc -> math_dictionary;
     }/*}}}*/
-
     subgraph cluster_ds{/*{{{*/
         ds[label="数据结构"];
         ds_stack[label="栈"];
@@ -321,6 +308,7 @@ digraph{
         ds_lct[label="Link Cut Tree"];
         ds_ett[label="Euler Tour Tree"];
         ds_divide_combine[label="析合树"];
+        ds_k_dtree[label="K-D tree"];
 
         subgraph cluster_ds_pbds{
             ds_pbds[label="pb_ds"];
@@ -328,7 +316,6 @@ digraph{
 
             ds_pbds -> ds_pb_ds_priority_queue;
         }
-
         subgraph cluster_ds_heap{
             ds_heap[label="堆"];
             ds_binary_heap[label="二叉堆"];
@@ -361,7 +348,7 @@ digraph{
                     ds_avl,
                     ds_scapegoat,
                     ds_cartesian_tree
-            }
+            }[len=4];
         }
         subgraph cluster_ds_dsids{
             ds_dsids[label="树套树"];
@@ -375,10 +362,8 @@ digraph{
                     ds_seg_in_balanced,
                     ds_balanced_in_seg,
                     ds_persistent_in_bit
-            }
+            }[len=4];
         }
-        ds_k_dtree[label="K-D tree"];
-
         subgraph cluster_ds_persis{
             ds_persis[label="可持久化数据结构"];
             ds_persistent_seg[label="可持久化线段树"];
@@ -430,9 +415,9 @@ digraph{
                 ds_lct,
                 ds_ett,
                 ds_divide_combine
-        }
-        ds_segment -> ds_segment_tree_beats;
-        ds_segment -> ds_k_dtree;
+        };
+        ds_segment -> ds_segment_tree_beats[len=3];
+        ds_segment -> ds_k_dtree[len=3];
         //ds_segment -> ds_persistent_seg;
 
         ds_stack -> ds_monotonous_stack;
@@ -443,7 +428,6 @@ digraph{
         //ds_bst -> ds_persistent_balanced;
         //ds_merge_heap -> ds_persistent_heap;
     }/*}}}*/
-
     subgraph cluster_gra{/*{{{*/
         gra[label="图论"];
         graph_basic[label="图论基础"];
@@ -548,7 +532,7 @@ digraph{
                 gra_flow,
                 gra_spe_gra,
                 graph_misc
-        }
+        };
         graph_basic -> graph_traverse;
         graph_shortest_path -> graph_differential_constraints;
         graph_misc -> graph_color;
@@ -557,7 +541,6 @@ digraph{
         graph_bi_graph -> graph_bi_gra_match;
         graph_flow_max_flow -> graph_bi_gra_match;
     }/*}}}*/
-
     subgraph cluster_geometry{/*{{{*/
         geometry[label="计算几何"];
         geometry_2d[label="二维计算几何基础"];
@@ -586,9 +569,8 @@ digraph{
                 geometry_nearest_points,
                 geometry_random_incremental,
                 geometry_magic
-        }
+        };
     }/*}}}*/
-
     subgraph cluster_misc{/*{{{*/
         misc[label="杂项"];
         misc_io[label="读入/输出优化"];
@@ -608,7 +590,7 @@ digraph{
                 misc_cdq_divide,
                     misc_parallel_binsearch,
                     misc_mo_algo
-            }
+            }[len=3];
         }
         misc_fractional_programming[label="分数规划"];
         subgraph cluster_misc_random{
@@ -620,7 +602,7 @@ digraph{
                 misc_random_func,
                     misc_hill_climbing,
                     misc_simulated_annealing
-            }
+            }[len=3];
         }
         subgraph cluster_misc_cc{
             misc_cc[label="理论基础"];
@@ -632,7 +614,7 @@ digraph{
                 misc_cc_basic,
                     misc_complexity,
                     misc_endianness
-            }
+            }[len=3];
         }
 
         misc -> {
@@ -648,7 +630,6 @@ digraph{
                 misc_gray_code
         }
     }/*}}}*/
-
 
     //other relations
     search_dfs -> dp_memo;
