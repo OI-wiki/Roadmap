@@ -444,68 +444,38 @@ digraph{
         //ds_merge_heap -> ds_persistent_heap;
     }/*}}}*/
 
-
     subgraph cluster_gra{/*{{{*/
         gra[label="图论"];
         graph_basic[label="图论基础"];
         graph_traverse[label="图的遍历"];
-
-        subgraph cluster_gra_tree{
-            gra_tree[label="树上问题"];
-            graph_tree_basic[label="树基础"];
-            graph_lca[label="最近公共祖先"];
-            graph_dfs_order[label="DFS 序"];
-            graph_tree_misc[label="树的其他问题"];
-            graph_tree_hash[label="树哈希"];
-            graph_heavy_light_decomposition[label="树链剖分"];
-            graph_tree_divide[label="树分治"];
-            graph_dynamic_tree_divide[label="动态树分治"];
-            graph_virtual_tree[label="虚树"];
-            graph_dsu_on_tree[label="树上启发式合并"];
-
-            gra_tree -> {
-                graph_tree_basic,
-                    graph_lca,
-                    graph_dfs_order,
-                    graph_tree_misc,
-                    graph_tree_hash,
-                    graph_heavy_light_decomposition,
-                    graph_tree_divide,
-                    graph_dynamic_tree_divide,
-                    graph_virtual_tree,
-                    graph_dsu_on_tree
-            }
-        }
         graph_matrix_tree[label="矩阵树定理"];
-        graph_dag[label="有向无环图"];
-        graph_topo[label="拓扑排序"];
         graph_mst[label="最小生成树"];
         graphst[label="最小树形图"];
         graph_shortest_path[label="最短路"];
         graph_differential_constraints[label="差分约束"];
         graph_kth_path[label="k 短路"];
-
-        subgraph cluster_gra_com{
-            gra_com[label="连通性相关"];
-            graph_scc[label="强连通分量"];
-            graph_bcc[label="双连通分量"];
-            graph_bridge[label="点和桥"];
-            graph_2_sat[label="2-SAT"];
-
-            gra_com -> {
-                graph_scc,
-                    graph_bcc,
-                    graph_bridge,
-                    graph_2_sat
-            }
-        }
-        graph_euler[label="欧拉图"];
-        graph_hamilton[label="哈密顿图"];
-        graph_bi_graph[label="二分图"];
         graph_min_circle[label="最小环"];
-        graph_planar[label="平面图"];
         graph_color[label="图的着色"];
 
+        subgraph cluster_gra_spe_gra{
+            gra_spe_gra[label="特殊图"];
+            graph_euler[label="欧拉图"];
+            graph_planar[label="平面图"];
+            graph_hamilton[label="哈密顿图"];
+            graph_bi_graph[label="二分图"];
+            graph_dag[label="有向无环图"];
+            graph_topo[label="拓扑排序"];
+            graph_bi_gra_match[label="二分图匹配"];
+
+            gra_spe_gra -> {
+                graph_euler,
+                    graph_planar,
+                    graph_hamilton,
+                    graph_bi_graph,
+                    graph_dag
+            }
+
+        }
         subgraph cluster_gra_flow{
             gra_flow[label="网络流"];
             graph_flow_node[label="拆点"];
@@ -522,33 +492,73 @@ digraph{
                     graph_flow_bound
             }
         }
-        graph_prufer[label="Prufer 序列"];
+        subgraph cluster_gra_com{
+            gra_com[label="连通性相关"];
+            graph_scc[label="强连通分量"];
+            graph_bcc[label="双连通分量"];
+            graph_bridge[label="割点和桥"];
+            graph_2_sat[label="2-SAT"];
+
+            gra_com -> {
+                graph_scc,
+                    graph_bcc,
+                    graph_bridge,
+                    graph_2_sat
+            }
+        }
+        subgraph cluster_gra_tree{
+            gra_tree[label="树上问题"];
+            graph_tree_basic[label="树基础"];
+            graph_lca[label="最近公共祖先"];
+            graph_dfs_order[label="DFS 序"];
+            graph_tree_misc[label="树的其他问题"];
+            graph_tree_hash[label="树哈希"];
+            graph_heavy_light_decomposition[label="树链剖分"];
+            graph_tree_divide[label="树分治"];
+            graph_dynamic_tree_divide[label="动态树分治"];
+            graph_virtual_tree[label="虚树"];
+            graph_dsu_on_tree[label="树上启发式合并"];
+            graph_prufer[label="Prufer 序列"];
+
+            gra_tree -> {
+                graph_tree_basic,
+                    graph_lca,
+                    graph_dfs_order,
+                    graph_tree_misc,
+                    graph_tree_hash,
+                    graph_heavy_light_decomposition,
+                    graph_tree_divide,
+                    graph_virtual_tree,
+                    graph_dsu_on_tree
+            }
+            graph_tree_divide -> graph_dynamic_tree_divide;
+            graph_tree_misc -> graph_prufer;
+        }
         graph_misc[label="图论杂项"];
 
         gra -> {
             graph_basic,
-                graph_traverse,
                 gra_tree,
                 graph_matrix_tree,
-                graph_dag,
-                graph_topo,
                 graph_mst,
                 graphst,
                 graph_shortest_path,
-                graph_differential_constraints,
-                graph_kth_path,
                 gra_com,
-                graph_euler,
-                graph_hamilton,
-                graph_bi_graph,
                 graph_min_circle,
-                graph_planar,
-                graph_color,
                 gra_flow,
-                graph_prufer,
+                gra_spe_gra,
                 graph_misc
         }
+        graph_basic -> graph_traverse;
+        graph_shortest_path -> graph_differential_constraints;
+        graph_misc -> graph_color;
+        graph_shortest_path -> graph_kth_path;
+        graph_dag -> graph_topo;
+        graph_bi_graph -> graph_bi_gra_match;
+        graph_flow_max_flow -> graph_bi_gra_match;
     }/*}}}*/
+
+
     subgraph cluster_geometry{/*{{{*/
         geometry[label="计算几何"];
         geometry_2d[label="二维计算几何基础"];
@@ -636,5 +646,5 @@ digraph{
     //other relations
     search_dfs -> dp_memo;
 
-    label="知识树 v0.5";
+    label="知识树 v0.6";
 }
