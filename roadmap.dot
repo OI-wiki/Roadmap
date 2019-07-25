@@ -4,7 +4,7 @@ digraph{
     node[shape=hexagon,style=filled,width=.3,height=.8];
     edge[len=3.5];
 
-    root[label="算法结构"];
+    root[label="算法结构",fontsize=24,shape=circle,fillcolor=red];
     root -> { dp, search, math, gra, ds, geometry, misc }[len=6];
     root -> string[len=10];
 
@@ -634,5 +634,5 @@ digraph{
     //other relations
     search_dfs -> dp_memo;
 
-    label="知识树 v1.0";
+    label="知识树 v1.0.1";
 }
