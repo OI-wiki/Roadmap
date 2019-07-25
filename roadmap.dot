@@ -1,5 +1,5 @@
 digraph{
-    graph[rankdir=LR];
+    graph[rankdir=LR,ranksep=1.5];
     node[shape=box,style=filled];
 
     root[label="算法结构"];
@@ -34,6 +34,7 @@ digraph{
 
     subgraph cluster_dp{/*{{{*/
         //bgcolor="green";
+
         dp[label="动态规划"];
         dp_memo[label="记忆化搜索"];
         dp_knapsack[label="背包 DP"];
@@ -44,6 +45,23 @@ digraph{
         dp_number[label="数位 DP"];
         dp_plug[label="插头 DP"];
         dp_misc[label="其他 DP"];
+
+        subgraph cluster_dp_opt{
+            dp_opt[label="DP 优化"];
+            dp_opt_bin_mon_que_stack[label="单调队列/单调栈优化"];
+            dp_opt_con_hull_opt[label="斜率优化"];
+            dp_opt_knu_yao_qua_ine[label="四边形不等式优化"];
+            dp_opt_bin_knapsack[label="二进制优化多重背包"];
+            dp_opt_sta_opt[label="状态设计优化"];
+
+            dp_opt ->{
+                dp_opt_bin_knapsack,
+                    dp_opt_bin_mon_que_stack,
+                    dp_opt_con_hull_opt,
+                    dp_opt_knu_yao_qua_ine,
+                    dp_opt_sta_opt
+            }
+        }
 
         dp -> { 
             dp_memo,
@@ -56,23 +74,6 @@ digraph{
                 dp_plug,
                 dp_opt,
                 dp_misc
-        }
-
-        subgraph cluster_dp_opt{
-            dp_opt[label="DP 优化"];
-            dp_opt_bin_knapsack[label="二进制优化多重背包"];
-            dp_opt_bin_mon_que_stack[label="单调队列/单调栈优化"];
-            dp_opt_con_hull_opt[label="斜率优化"];
-            dp_opt_knu_yao_qua_ine[label="四边形不等式优化"];
-            dp_opt_sta_opt[label="状态设计优化"];
-
-            dp_opt ->{
-                dp_opt_bin_knapsack,
-                    dp_opt_bin_mon_que_stack,
-                    dp_opt_con_hull_opt,
-                    dp_opt_knu_yao_qua_ine,
-                    dp_opt_sta_opt
-            }
         }
     }/*}}}*/
 
@@ -302,72 +303,48 @@ digraph{
         math_misc -> math_dictionary;
     }/*}}}*/
 
-
     subgraph cluster_ds{/*{{{*/
         ds[label="数据结构"];
+        ds_stack[label="栈"];
+        ds_queue[label="队列"];
+        ds_linked_list[label="链表"];
+        ds_hash[label="哈希表"];
+        ds_dsu[label="并查集"];
+        ds_monotonous_stack[label="单调栈"];
+        ds_monotonous_queue[label="单调队列"];
+        ds_sparse_table[label="ST 表"];
+        ds_bit[label="树状数组"];
+        ds_segment[label="线段树"];
+        ds_segment_tree_beats[label="线段树 & 区间历史最值"];
+        ds_dividing[label="划分树"];
+        ds_odt[label="珂朵莉树"];
+        ds_lct[label="Link Cut Tree"];
+        ds_ett[label="Euler Tour Tree"];
+        ds_divide_combine[label="析合树"];
 
-        subgraph cluster_ds_stl{
-            ds_stl[label="STL"];
-            ds_stl_vector[label="vector"];
-            ds_stl_priority_queue[label="priority_queue"];
-            ds_stl_map[label="map"];
-            ds_stl_bitset[label="bitset"];
-
-            ds_stl -> {
-                ds_stl_vector,
-                    ds_stl_priority_queue,
-                    ds_stl_map,
-                    ds_stl_bitset
-            }
-        }
         subgraph cluster_ds_pbds{
             ds_pbds[label="pb_ds"];
             ds_pb_ds_priority_queue[label="__gnu_pbds::priority_queue"];
 
             ds_pbds -> ds_pb_ds_priority_queue;
         }
-        ds_stack[label="栈"];
-        ds_queue[label="队列"];
-        ds_linked_list[label="链表"];
-        ds_hash[label="哈希表"];
-        ds_dsu[label="并查集"];
 
         subgraph cluster_ds_heap{
             ds_heap[label="堆"];
             ds_binary_heap[label="二叉堆"];
+            ds_merge_heap[label="可并堆"];
             ds_pairing_heap[label="配对堆"];
             ds_leftist_tree[label="左偏树"];
 
             ds_heap -> {
                 ds_binary_heap,
-                    ds_pairing_heap,
-                    ds_leftist_tree
+                    ds_merge_heap
             }
+            ds_merge_heap -> ds_pairing_heap;
+            ds_merge_heap -> ds_leftist_tree;
         }
-        subgraph ds_block{
-            ds_block[label="块状数据结构"];
-            ds_square_root_decomposition[label="分块思想"];
-            ds_block_list[label="块状链表"];
-            ds_block_array[label="块状数组"];
-            ds_tree_decompose[label="树分块"];
-
-            ds_block -> {
-                ds_square_root_decomposition,
-                    ds_block_list,
-                    ds_block_array,
-                    ds_tree_decompose
-            }
-        }
-        ds_monotonous_stack[label="单调栈"];
-        ds_monotonous_queue[label="单调队列"];
-        ds_sparse_table[label="倍增"];
-        ds_bit[label="树状数组"];
-        ds_segment[label="线段树"];
-        ds_segment_tree_beats[label="线段树 & 区间历史最值"];
-        ds_dividing[label="划分树"];
-
         subgraph cluster_ds_bst{
-            ds_bst[label="二叉搜索树"];
+            ds_bst[label="二叉搜索树/平衡树"];
             ds_treap[label="Treap"];
             ds_splay[label="Splay"];
             ds_wblt[label="WBLT"];
@@ -418,14 +395,23 @@ digraph{
                     ds_persistent_heap
             }
         }
-        ds_odt[label="珂朵莉树"];
-        ds_lct[label="Link Cut Tree"];
-        ds_ett[label="Euler Tour Tree"];
-        ds_divide_combine[label="析合树"];
+        subgraph cluster_ds_block{
+            ds_block[label="块状数据结构"];
+            ds_square_root_decomposition[label="分块思想"];
+            ds_block_list[label="块状链表"];
+            ds_block_array[label="块状数组"];
+            ds_tree_decompose[label="树分块"];
+
+            ds_block -> {
+                ds_square_root_decomposition,
+                    ds_block_list,
+                    ds_block_array,
+                    ds_tree_decompose
+            }
+        }
 
         ds -> {
-            ds_stl,
-                ds_pbds,
+            ds_pbds,
                 ds_stack,
                 ds_queue,
                 ds_linked_list,
@@ -433,22 +419,29 @@ digraph{
                 ds_dsu,
                 ds_heap,
                 ds_block,
-                ds_monotonous_stack,
-                ds_monotonous_queue,
                 ds_sparse_table,
                 ds_bit,
                 ds_segment,
-                ds_segment_tree_beats,
                 ds_dividing,
                 ds_bst,
                 ds_dsids,
-                ds_k_dtree,
                 ds_persis,
                 ds_odt,
                 ds_lct,
                 ds_ett,
                 ds_divide_combine
         }
+        ds_segment -> ds_segment_tree_beats;
+        ds_segment -> ds_k_dtree;
+        //ds_segment -> ds_persistent_seg;
+
+        ds_stack -> ds_monotonous_stack;
+        ds_queue -> ds_monotonous_queue;
+        ds_monotonous_stack -> dp_opt_bin_mon_que_stack;
+        ds_monotonous_queue -> dp_opt_bin_mon_que_stack;
+        ds_monotonous_queue -> dp_opt_con_hull_opt;
+        //ds_bst -> ds_persistent_balanced;
+        //ds_merge_heap -> ds_persistent_heap;
     }/*}}}*/
 
 
@@ -643,5 +636,5 @@ digraph{
     //other relations
     search_dfs -> dp_memo;
 
-    label="知识树 v0.4";
+    label="知识树 v0.5";
 }

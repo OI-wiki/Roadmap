@@ -1,0 +1,647 @@
+digraph{
+    graph[rankdir=LR];
+    node[shape=box,style=filled];
+
+    root[label="算法结构"];
+    root -> { dp, search, string, math, ds, gra, geometry, misc }
+//
+//    subgraph cluster_search{/*{{{*/
+//        search[label="搜索"];
+//        search_opt[label="优化/剪枝"];
+//        search_dfs[label="深度优先搜索"];
+//        search_bfs[label="广度优先搜索"];
+//        search_bidir[label="双向搜索"];
+//        search_heuristic[label="启发式搜索"];
+//        search_astar[label="A*算法"];
+//        search_iter[label="迭代加深搜索"];
+//        search_ida[label="IDA*算法"];
+//        //search_back[label="回溯法"];
+//        search_dlx[label="Dancing Links"];
+//
+//        search -> {
+//            search_dfs,
+//                search_bfs,
+//                search_bidir,
+//                search_heuristic,
+//                //search_back,
+//                search_dlx
+//        }
+//        search_dfs -> search_opt ;
+//        search_dfs -> search_astar;
+//        search_bfs -> search_astar -> search_ida ;
+//        search_dfs -> search_iter -> search_ida ;
+//    }/*}}}*/
+//
+//    subgraph cluster_dp{/*{{{*/
+//        //bgcolor="green";
+//        dp[label="动态规划"];
+//        dp_memo[label="记忆化搜索"];
+//        dp_knapsack[label="背包 DP"];
+//        dp_interval[label="区间 DP"];
+//        dp_dag[label="DAG 上 DP"];
+//        dp_tree[label="树形 DP"];
+//        dp_state[label="状圧 DP"];
+//        dp_number[label="数位 DP"];
+//        dp_plug[label="插头 DP"];
+//        dp_misc[label="其他 DP"];
+//
+//        dp -> { 
+//            dp_memo,
+//                dp_knapsack,
+//                dp_interval,
+//                dp_dag,
+//                dp_tree,
+//                dp_state,
+//                dp_number,
+//                dp_plug,
+//                dp_opt,
+//                dp_misc
+//        }
+//
+//        subgraph cluster_dp_opt{
+//            dp_opt[label="DP 优化"];
+//            dp_opt_bin_knapsack[label="二进制优化多重背包"];
+//            dp_opt_bin_mon_que_stack[label="单调队列/单调栈优化"];
+//            dp_opt_con_hull_opt[label="斜率优化"];
+//            dp_opt_knu_yao_qua_ine[label="四边形不等式优化"];
+//            dp_opt_sta_opt[label="状态设计优化"];
+//
+//            dp_opt ->{
+//                dp_opt_bin_knapsack,
+//                    dp_opt_bin_mon_que_stack,
+//                    dp_opt_con_hull_opt,
+//                    dp_opt_knu_yao_qua_ine,
+//                    dp_opt_sta_opt
+//            }
+//        }
+//    }/*}}}*/
+//
+//    subgraph cluster_string{/*{{{*/
+//        string[label="字符串"];
+//        string_stl[label="标准库"];
+//        string_match[label="字符串匹配"];
+//        string_hash[label="哈希"];
+//        string_pre[label="前缀函数与 KMP 算法"];
+//        string_z[label="Z 函数"];
+//        string_trie[label="字典树"];
+//        string_sa[label="后缀数组"];
+//        string_auto[label="自动机"];
+//        string_ac[label="AC 自动机"];
+//        string_sam[label="后缀自动机"];
+//        string_pam[label="回文自动机"];
+//        string_suf_tree[label="后缀树"];
+//        string_manacher[label="Manacher 算法"];
+//        string_min[label="最小表示法"];
+//
+//        string -> {
+//            string_stl,
+//                string_match,
+//                string_hash,
+//                string_pre,
+//                string_trie,
+//                string_auto,
+//                string_sa, string_suf_tree,
+//                string_manacher,
+//                string_min
+//        }
+//        string_auto -> { string_ac,string_sam,string_pam}
+//        string_pre -> {string_ac,string_z};
+//        string_suf_tree -> string_sam;
+//        string_trie -> string_ac;
+//
+//    }/*}}}*/
+//
+//    subgraph cluster_math { /*{{{*/
+//        math[label="数学"];
+//        math_base[label="进制"];
+//        math_bit[label="位运算"];
+//        math_bignum[label="高精度"];
+//        math_quick_pow[label="快速幂"];
+//
+//        subgraph cluster_num_theorem{/*{{{*/
+//            math_num_theorem[label="初等数论"];
+//            subgraph cluster_math_div{/*{{{*/
+//                math_div[label="整除及其性质"];
+//                math_prime[label="素数"];
+//                math_gcd[label="最大公约数"];
+//                math_euler[label="欧拉函数"];
+//                math_fermat[label="欧拉定理 & 费马小定理"];
+//                math_sieve[label="筛法"];
+//                math_euclidean_like[label="类欧几里德算法"];
+//
+//                math_div -> {
+//                    math_prime,
+//                        math_gcd,
+//                        math_euler,
+//                        math_fermat,
+//                        math_sieve
+//                }
+//                math_gcd -> math_euclidean_like;
+//            }/*}}}*/
+//            subgraph cluster_math_modular{/*{{{*/
+//                math_modular[label="同余方程"];
+//                math_bezouts[label="裴蜀定理"];
+//                math_inverse[label="乘法逆元"];
+//                math_linear_equation[label="线性同余方程"];
+//                math_exp_equation[label="指数同余方程"];
+//                math_crt[label="中国剩余定理"];
+//                math_bsgs[label="BSGS/ExBSGS"];
+//                math_primitive_root[label="原根"];
+//                math_discrete_log[label="离散对数"];
+//
+//                math_modular -> {
+//                    math_inverse,
+//                        math_primitive_root,
+//                        math_linear_equation,
+//                        math_exp_equation
+//                }
+//                math_linear_equation -> math_crt;
+//                //math_inverse -> math_crt;
+//                math_primitive_root -> math_discrete_log;
+//                math_linear_equation -> math_bezouts ;
+//                math_exp_equation -> math_bsgs;
+//            }/*}}}*/
+//            subgraph cluster_math_num_the_func{/*{{{*/
+//                math_num_the_func[label="数论函数相关"];
+//                math_mobius[label=" 莫比乌斯反演"];
+//                math_du_sieves[label="杜教筛"];
+//
+//                math_num_the_func -> {
+//                    math_mobius,
+//                        math_du_sieves
+//                }
+//            }/*}}}*/
+//
+//            math_div -> math_modular;
+//            math_num_theorem -> {
+//                math_div,
+//                    math_modular,
+//                    math_num_the_func
+//            }
+//        }/*}}}*/
+//        subgraph cluster_math_linear_algebra{/*{{{*/
+//            math_linear_algebra[label="线性代数"];
+//            math_matrix[label="矩阵"];
+//            math_gauss[label="高斯消元"];
+//            math_basis[label="线性基"];
+//
+//            math_linear_algebra -> {
+//                math_matrix,
+//                    math_gauss,
+//                    math_basis
+//            }
+//        }/*}}}*/
+//        math_linear_programming[label="线性规划"];
+//        math_simplex[label="单纯形"];
+//        subgraph cluster_math_array{/*{{{*/
+//            math_array[label="数列"];
+//            math_stirling[label="斯特林数"];
+//            math_catalan[label="卡特兰数"];
+//            math_fibonacci[label="斐波那契数列"];
+//
+//            math_array -> {
+//                math_stirling,
+//                    math_catalan,
+//                    math_fibonacci
+//            }
+//        }/*}}}*/
+//        subgraph cluster_math_comb{/*{{{*/
+//            math_comb[label="组合数学"];
+//            math_combination[label="排列组合"];
+//            math_cantor[label="康托展开"];
+//            math_inc_exc_pri[label="容斥原理"];
+//            math_dra_pri[label="抽屉原理"];
+//
+//            math_comb -> {
+//                math_combination,
+//                    math_catalan,
+//                    math_stirling,
+//                    math_inc_exc_pri,
+//                    math_dra_pri
+//            }
+//            math_combination -> math_cantor;
+//        }/*}}}*/
+//        math_complex[label="复数/复平面"];
+//        subgraph cluster_math_poly{/*{{{*/
+//            math_poly[label="多项式"];//1
+//            math_poly_inv_tri_func[label="多项式反三角函数"];//3
+//            math_poly_tri_func[label="多项式三角函数"];//4
+//            math_poly_mul_eval_inter[label="多项式多点求值|快速插值"];//5
+//            math_poly_newton[label="多项式牛顿迭代"];//6
+//            math_poly_ln_exp[label="多项式对数函数|指数函数"];//7
+//            math_poly_div_mod[label="多项式除法|取模"];//8
+//            math_poly_sqrt[label="多项式开方"];//9
+//            math_poly_inv[label="多项式求逆"];//10
+//            math_poly_lagrange_poly[label="拉格朗日插值"];//2
+//            math_poly_fwt[label="快速沃尔什变换"];//11
+//            math_poly_ntt[label="快速数论变换"];//12
+//            math_poly_fft[label="快速傅里叶变换"];//13
+//            math_poly_mul[label="多项式乘法"];//14
+//
+//            math_poly -> {
+//                math_poly_newton,
+//                    math_poly_lagrange_poly,
+//                    math_poly_fwt,
+//                    math_poly_ntt,
+//                    math_poly_fft
+//
+//                        /*math_poly_lagrange_poly,
+//                          math_poly_fft,
+//                          math_poly_ntt,
+//                          math_poly_fwt,
+//                          math_poly_inv,
+//                          math_poly_sqrt,
+//                          math_poly_div_mod,
+//                          math_poly_ln_exp,
+//                          math_poly_newton,
+//                          math_poly_mul_eval_inter,
+//                          math_poly_tri_func,
+//                          math_poly_inv_tri_func*/
+//            }
+//            {math_poly_ntt,math_poly_fft} -> math_poly_mul;
+//            math_poly_mul -> math_poly_inv;
+//            math_poly_inv -> {
+//                math_poly_ln_exp,
+//                    math_poly_div_mod,
+//                    math_poly_sqrt
+//            }
+//            math_poly_ln_exp -> math_poly_tri_func;
+//            { math_poly_ln_exp,
+//                math_poly_sqrt,
+//                math_poly_inv} -> math_poly_inv_tri_func;
+//            math_poly_div_mod -> math_poly_mul_eval_inter;
+//        }/*}}}*/
+//        math_dictionary[label="分段打表"];
+//        math_expectation[label="概率 & 期望"];
+//        math_permutation_group[label="置换群"];
+//        math_integral[label="数值积分"];
+//        math_game_theory[label="博弈论"];
+//        math_misc[label="数学杂项"];
+//
+//        math -> {
+//            math_base,
+//                math_bit,
+//                math_quick_pow,
+//                math_linear_algebra,
+//                math_complex,
+//                math_num_theorem,
+//                math_array,
+//                math_poly,
+//                math_comb,
+//                math_expectation,
+//                math_permutation_group,
+//                math_integral,
+//                math_linear_programming,
+//                math_game_theory,
+//                math_misc
+//        }
+//        math_complex -> math_poly_fft;
+//        math_linear_programming -> math_simplex;
+//        math_base -> math_bignum;
+//        math_linear_algebra -> math_linear_programming;
+//        math_misc -> math_dictionary;
+//    }/*}}}*/
+//
+
+    subgraph cluster_ds{/*{{{*/
+        ds[label="数据结构"];
+
+        subgraph cluster_ds_stl{
+            ds_stl[label="STL"];
+            ds_stl_vector[label="vector"];
+            ds_stl_priority_queue[label="priority_queue"];
+            ds_stl_map[label="map"];
+            ds_stl_bitset[label="bitset"];
+
+            ds_stl -> {
+                ds_stl_vector,
+                    ds_stl_priority_queue,
+                    ds_stl_map,
+                    ds_stl_bitset
+            }
+        }
+        subgraph cluster_ds_pbds{
+            ds_pbds[label="pb_ds"];
+            ds_pb_ds_priority_queue[label="__gnu_pbds::priority_queue"];
+
+            ds_pbds -> ds_pb_ds_priority_queue;
+        }
+        ds_stack[label="栈"];
+        ds_queue[label="队列"];
+        ds_linked_list[label="链表"];
+        ds_hash[label="哈希表"];
+        ds_dsu[label="并查集"];
+
+        subgraph cluster_ds_heap{
+            ds_heap[label="堆"];
+            ds_binary_heap[label="二叉堆"];
+            ds_pairing_heap[label="配对堆"];
+            ds_leftist_tree[label="左偏树"];
+
+            ds_heap -> {
+                ds_binary_heap,
+                    ds_pairing_heap,
+                    ds_leftist_tree
+            }
+        }
+        subgraph ds_block{
+            ds_block[label="块状数据结构"];
+            ds_square_root_decomposition[label="分块思想"];
+            ds_block_list[label="块状链表"];
+            ds_block_array[label="块状数组"];
+            ds_tree_decompose[label="树分块"];
+
+            ds_block -> {
+                ds_square_root_decomposition,
+                    ds_block_list,
+                    ds_block_array,
+                    ds_tree_decompose
+            }
+        }
+        ds_monotonous_stack[label="单调栈"];
+        ds_monotonous_queue[label="单调队列"];
+        ds_sparse_table[label="倍增"];
+        ds_bit[label="树状数组"];
+        ds_segment[label="线段树"];
+        ds_segment_tree_beats[label="线段树 & 区间历史最值"];
+        ds_dividing[label="划分树"];
+
+        subgraph cluster_ds_bst{
+            ds_bst[label="二叉搜索树"];
+            ds_treap[label="Treap"];
+            ds_splay[label="Splay"];
+            ds_wblt[label="WBLT"];
+            ds_sbt[label="Size Balanced Tree"];
+            ds_avl[label="AVL 树"];
+            ds_scapegoat[label="替罪羊树"];
+            ds_cartesian_tree[label="笛卡尔树"];
+
+            ds_bst -> {
+                ds_treap,
+                    ds_splay,
+                    ds_wblt,
+                    ds_sbt,
+                    ds_avl,
+                    ds_scapegoat,
+                    ds_cartesian_tree
+            }
+        }
+        subgraph cluster_ds_dsids{
+            ds_dsids[label="树套树"];
+            ds_seg_in_seg[label="线段树套线段树"];
+            ds_seg_in_balanced[label="平衡树套线段树"];
+            ds_balanced_in_seg[label="线段树套平衡树"];
+            ds_persistent_in_bit[label="树状数组套主席树"];
+
+            ds_dsids -> {
+                ds_seg_in_seg,
+                    ds_seg_in_balanced,
+                    ds_balanced_in_seg,
+                    ds_persistent_in_bit
+            }
+        }
+        ds_k_dtree[label="K-D tree"];
+
+        subgraph cluster_ds_persis{
+            ds_persis[label="可持久化数据结构"];
+            ds_persistent_seg[label="可持久化线段树"];
+            ds_persistent_block_array[label="可持久化块状数组"];
+            ds_persistent_balanced[label="可持久化平衡树"];
+            ds_persistent_trie[label="可持久化字典树"];
+            ds_persistent_heap[label="可持久化可并堆"];
+
+            ds_persis -> {
+                ds_persistent_seg,
+                    ds_persistent_block_array,
+                    ds_persistent_balanced,
+                    ds_persistent_trie,
+                    ds_persistent_heap
+            }
+        }
+        ds_odt[label="珂朵莉树"];
+        ds_lct[label="Link Cut Tree"];
+        ds_ett[label="Euler Tour Tree"];
+        ds_divide_combine[label="析合树"];
+
+        ds -> {
+            ds_stl,
+                ds_pbds,
+                ds_stack,
+                ds_queue,
+                ds_linked_list,
+                ds_hash,
+                ds_dsu,
+                ds_heap,
+                ds_block,
+                ds_sparse_table,
+                ds_bit,
+                ds_segment,
+                ds_dividing,
+                ds_bst,
+                ds_dsids,
+                ds_k_dtree,
+                ds_persis,
+                ds_odt,
+                ds_lct,
+                ds_ett,
+                ds_divide_combine
+        }
+        ds_segment -> ds_segment_tree_beats;
+        ds_stack -> ds_monotonous_stack;
+        ds_queue -> ds_monotonous_queue;
+    }/*}}}*/
+
+//
+//    subgraph cluster_gra{/*{{{*/
+//        gra[label="图论"];
+//        graph_basic[label="图论基础"];
+//        graph_traverse[label="图的遍历"];
+//
+//        subgraph cluster_gra_tree{
+//            gra_tree[label="树上问题"];
+//            graph_tree_basic[label="树基础"];
+//            graph_lca[label="最近公共祖先"];
+//            graph_dfs_order[label="DFS 序"];
+//            graph_tree_misc[label="树的其他问题"];
+//            graph_tree_hash[label="树哈希"];
+//            graph_heavy_light_decomposition[label="树链剖分"];
+//            graph_tree_divide[label="树分治"];
+//            graph_dynamic_tree_divide[label="动态树分治"];
+//            graph_virtual_tree[label="虚树"];
+//            graph_dsu_on_tree[label="树上启发式合并"];
+//
+//            gra_tree -> {
+//                graph_tree_basic,
+//                    graph_lca,
+//                    graph_dfs_order,
+//                    graph_tree_misc,
+//                    graph_tree_hash,
+//                    graph_heavy_light_decomposition,
+//                    graph_tree_divide,
+//                    graph_dynamic_tree_divide,
+//                    graph_virtual_tree,
+//                    graph_dsu_on_tree
+//            }
+//        }
+//        graph_matrix_tree[label="矩阵树定理"];
+//        graph_dag[label="有向无环图"];
+//        graph_topo[label="拓扑排序"];
+//        graph_mst[label="最小生成树"];
+//        graphst[label="最小树形图"];
+//        graph_shortest_path[label="最短路"];
+//        graph_differential_constraints[label="差分约束"];
+//        graph_kth_path[label="k 短路"];
+//
+//        subgraph cluster_gra_com{
+//            gra_com[label="连通性相关"];
+//            graph_scc[label="强连通分量"];
+//            graph_bcc[label="双连通分量"];
+//            graph_bridge[label="点和桥"];
+//            graph_2_sat[label="2-SAT"];
+//
+//            gra_com -> {
+//                graph_scc,
+//                    graph_bcc,
+//                    graph_bridge,
+//                    graph_2_sat
+//            }
+//        }
+//        graph_euler[label="欧拉图"];
+//        graph_hamilton[label="哈密顿图"];
+//        graph_bi_graph[label="二分图"];
+//        graph_min_circle[label="最小环"];
+//        graph_planar[label="平面图"];
+//        graph_color[label="图的着色"];
+//
+//        subgraph cluster_gra_flow{
+//            gra_flow[label="网络流"];
+//            graph_flow_node[label="拆点"];
+//            graph_flow_max_flow[label="最大流"];
+//            graph_flow_min_cut[label="最小割"];
+//            graph_flow_min_cost[label="费用流"];
+//            graph_flow_bound[label="上下界网络流"];
+//
+//            gra_flow -> {
+//                graph_flow_node,
+//                    graph_flow_max_flow,
+//                    graph_flow_min_cut,
+//                    graph_flow_min_cost,
+//                    graph_flow_bound
+//            }
+//        }
+//        graph_prufer[label="Prufer 序列"];
+//        graph_misc[label="图论杂项"];
+//
+//        gra -> {
+//            graph_basic,
+//                graph_traverse,
+//                gra_tree,
+//                graph_matrix_tree,
+//                graph_dag,
+//                graph_topo,
+//                graph_mst,
+//                graphst,
+//                graph_shortest_path,
+//                graph_differential_constraints,
+//                graph_kth_path,
+//                gra_com,
+//                graph_euler,
+//                graph_hamilton,
+//                graph_bi_graph,
+//                graph_min_circle,
+//                graph_planar,
+//                graph_color,
+//                gra_flow,
+//                graph_prufer,
+//                graph_misc
+//        }
+//    }/*}}}*/
+//    subgraph cluster_geometry{/*{{{*/
+//        geometry[label="计算几何"];
+//        geometry_2d[label="二维计算几何基础"];
+//        geometry_3d[label="三维计算几何基础"];
+//        geometry_distance[label="距离"];
+//        geometry_pick[label="Pick 定理"];
+//        geometry_triangulation[label="三角剖分"];
+//        geometry_convex_hull[label="凸包"];
+//        geometry_scanning[label="扫描线"];
+//        geometry_rotating_calipers[label="旋转卡壳"];
+//        geometry_half_plane_intersection[label="半平面交"];
+//        geometry_nearest_points[label="平面最近点对"];
+//        geometry_random_incremental[label="随机增量法"];
+//        geometry_magic[label="计算几何杂项"];
+//
+//        geometry -> {
+//            geometry_2d,
+//                geometry_3d,
+//                geometry_distance,
+//                geometry_pick,
+//                geometry_triangulation,
+//                geometry_convex_hull,
+//                geometry_scanning,
+//                geometry_rotating_calipers,
+//                geometry_half_plane_intersection,
+//                geometry_nearest_points,
+//                geometry_random_incremental,
+//                geometry_magic
+//        }
+//    }/*}}}*/
+//    subgraph cluster_misc{/*{{{*/
+//        misc[label="杂项"];
+//        misc_io[label="读入/输出优化"];
+//        misc_complexity[label="复杂度"];
+//        misc_discrete[label="离散化"];
+//
+//        subgraph cluster_misc_offline{
+//            misc_offline[label="离线算法"];
+//            misc_cdq_divide[label="CDQ 分治"];
+//            misc_parallel_binsearch[label="整体二分"];
+//            misc_mo_algo[label="莫队算法"];
+//
+//            misc_offline -> {
+//                misc_cdq_divide,
+//                    misc_parallel_binsearch,
+//                    misc_mo_algo
+//            }
+//        }
+//        misc_fractional_programming[label="分数规划"];
+//        subgraph cluster_misc_random{
+//            misc_random[label="随机化"];
+//            misc_random_func[label="随机函数"];
+//            misc_hill_climbing[label="爬山算法"];
+//            misc_simulated_annealing[label="模拟退火"];
+//            misc_random -> {
+//                misc_random_func,
+//                    misc_hill_climbing,
+//                    misc_simulated_annealing
+//            }
+//        }
+//        misc_largest_matrix[label="悬线法"];
+//        misc_cc_basic[label="计算理论基础"];
+//        misc_endianness[label="字节顺序"];
+//        misc_josephus[label="约瑟夫问题"];
+//        misc_stern_brocot[label="Stern_Brocot 树与 Farey 序列"];
+//        misc_gray_code[label="格雷码"];
+//
+//        misc -> {
+//            misc_io,
+//                misc_complexity,
+//                misc_discrete,
+//                misc_offline,
+//                misc_fractional_programming,
+//                misc_random,
+//                misc_largest_matrix,
+//                misc_cc_basic,
+//                misc_endianness,
+//                misc_josephus,
+//                misc_stern_brocot,
+//                misc_gray_code
+//        }
+//    }/*}}}*/
+//
+
+    //other relations
+    search_dfs -> dp_memo;
+
+    label="知识树 v0.4";
+}
