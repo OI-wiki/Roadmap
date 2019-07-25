@@ -111,47 +111,72 @@ digraph{
 
     }/*}}}*/
 
-    subgraph cluster_math{/*{{{*/
+    subgraph cluster_math { /*{{{*/
         math[label="数学"];
         math_base[label="进制"];
         math_bit[label="位运算"];
         math_bignum[label="高精度"];
-        math_quick_pow[labek="快速幂"];
+        math_quick_pow[label="快速幂"];
 
-        subgraph cluster_math_div{/*{{{*/
-            math_div[label="整除及其性质"];
-            math_prime[label="素数"];
-            math_gcd[label="最大公约数"];
-            math_euler[label="欧拉函数"];
-            math_sieve[label="筛法"];
-            math_fermat[label="欧拉定理 & 费马小定理"];
-            math_euclidean_like[label="类欧几里德算法"];
+        subgraph cluster_num_theorem{/*{{{*/
+            math_num_theorem[label="初等数论"];
+            subgraph cluster_math_div{/*{{{*/
+                math_div[label="整除及其性质"];
+                math_prime[label="素数"];
+                math_gcd[label="最大公约数"];
+                math_euler[label="欧拉函数"];
+                math_fermat[label="欧拉定理 & 费马小定理"];
+                math_sieve[label="筛法"];
+                math_euclidean_like[label="类欧几里德算法"];
 
-            math_div -> {
-                math_prime,
-                    math_gcd,
-                    math_euler,
-                    math_sieve,
-                    math_fermat,
-                    math_euclidean_like
-            }
-        }/*}}}*/
-        subgraph cluster_math_modular{/*{{{*/
-            math_modular[label="同余方程相关"];
-            math_bezouts[label="裴蜀定理"];
-            math_inverse[label="乘法逆元"];
-            math_linear_equation[label="线性同余方程"];
-            math_crt[label="中国剩余定理"];
-            math_bsgs[label="BSGS"];
-            math_primitive_root[label="原根"];
+                math_div -> {
+                    math_prime,
+                        math_gcd,
+                        math_euler,
+                        math_fermat,
+                        math_sieve
+                }
+                math_gcd -> math_euclidean_like;
+            }/*}}}*/
+            subgraph cluster_math_modular{/*{{{*/
+                math_modular[label="同余方程"];
+                math_bezouts[label="裴蜀定理"];
+                math_inverse[label="乘法逆元"];
+                math_linear_equation[label="线性同余方程"];
+                math_exp_equation[label="指数同余方程"];
+                math_crt[label="中国剩余定理"];
+                math_bsgs[label="BSGS/ExBSGS"];
+                math_primitive_root[label="原根"];
+                math_discrete_log[label="离散对数"];
 
-            math_modular -> {
-                math_bezouts,
+                math_modular -> {
                     math_inverse,
-                    math_linear_equation,
-                    math_crt,
-                    math_bsgs,
-                    math_primitive_root
+                        math_primitive_root,
+                        math_linear_equation,
+                        math_exp_equation
+                }
+                math_linear_equation -> math_crt;
+                //math_inverse -> math_crt;
+                math_primitive_root -> math_discrete_log;
+                math_linear_equation -> math_bezouts ;
+                math_exp_equation -> math_bsgs;
+            }/*}}}*/
+            subgraph cluster_math_num_the_func{/*{{{*/
+                math_num_the_func[label="数论函数相关"];
+                math_mobius[label=" 莫比乌斯反演"];
+                math_du_sieves[label="杜教筛"];
+
+                math_num_the_func -> {
+                    math_mobius,
+                        math_du_sieves
+                }
+            }/*}}}*/
+
+            math_div -> math_modular;
+            math_num_theorem -> {
+                math_div,
+                    math_modular,
+                    math_num_the_func
             }
         }/*}}}*/
         subgraph cluster_math_linear_algebra{/*{{{*/
@@ -166,53 +191,23 @@ digraph{
                     math_basis
             }
         }/*}}}*/
-        math_complex[label="复数"];
-        math_dictionary[label="分段打表"];
-        subgraph cluster_math_number_theorem{/*{{{*/
-            math_number_theorem[label="数论函数相关"];
-            math_mobius[label=" 莫比乌斯反演"];
-            math_du_sieves[label="杜教筛"];
+        math_linear_programming[label="线性规划"];
+        math_simplex[label="单纯形"];
+        subgraph cluster_math_array{/*{{{*/
+            math_array[label="数列"];
+            math_stirling[label="斯特林数"];
+            math_catalan[label="卡特兰数"];
+            math_fibonacci[label="斐波那契数列"];
 
-            math_number_theorem -> {
-                math_mobius,
-                    math_du_sieves
-            }
-        }/*}}}*/
-        subgraph cluster_math_poly{/*{{{*/
-            math_poly[label="多项式"];
-            math_poly_lagrange_poly[label="拉格朗日插值"];
-            math_poly_fft[label="快速傅里叶变换"];
-            math_poly_ntt[label="快速数论变换"];
-            math_poly_fwt[label="快速沃尔什变换"];
-            math_poly_inv[label="多项式求逆"];
-            math_poly_sqrt[label="多项式开方"];
-            math_poly_div_mod[label="多项式除法|取模"];
-            math_poly_ln_exp[label="多项式对数函数|指数函数"];
-            math_poly_newton[label="多项式牛顿迭代"];
-            math_poly_mul_eval_inter[label="多项式多点求值|快速插值"];
-            math_poly_tri_func[label="多项式三角函数"];
-            math_poly_inv_tri_func[label="多项式反三角函数"];
-
-            math_poly -> {
-                math_poly_lagrange_poly,
-                    math_poly_fft,
-                    math_poly_ntt,
-                    math_poly_fwt,
-                    math_poly_inv,
-                    math_poly_sqrt,
-                    math_poly_div_mod,
-                    math_poly_ln_exp,
-                    math_poly_newton,
-                    math_poly_mul_eval_inter,
-                    math_poly_tri_func,
-                    math_poly_inv_tri_func
+            math_array -> {
+                math_stirling,
+                    math_catalan,
+                    math_fibonacci
             }
         }/*}}}*/
         subgraph cluster_math_comb{/*{{{*/
             math_comb[label="组合数学"];
             math_combination[label="排列组合"];
-            math_catalan[label="卡特兰数"];
-            math_stirling[label="斯特林数"];
             math_cantor[label="康托展开"];
             math_inc_exc_pri[label="容斥原理"];
             math_dra_pri[label="抽屉原理"];
@@ -221,43 +216,93 @@ digraph{
                 math_combination,
                     math_catalan,
                     math_stirling,
-                    math_cantor,
                     math_inc_exc_pri,
                     math_dra_pri
             }
+            math_combination -> math_cantor;
         }/*}}}*/
+        math_complex[label="复数/复平面"];
+        subgraph cluster_math_poly{/*{{{*/
+            math_poly[label="多项式"];//1
+            math_poly_inv_tri_func[label="多项式反三角函数"];//3
+            math_poly_tri_func[label="多项式三角函数"];//4
+            math_poly_mul_eval_inter[label="多项式多点求值|快速插值"];//5
+            math_poly_newton[label="多项式牛顿迭代"];//6
+            math_poly_ln_exp[label="多项式对数函数|指数函数"];//7
+            math_poly_div_mod[label="多项式除法|取模"];//8
+            math_poly_sqrt[label="多项式开方"];//9
+            math_poly_inv[label="多项式求逆"];//10
+            math_poly_lagrange_poly[label="拉格朗日插值"];//2
+            math_poly_fwt[label="快速沃尔什变换"];//11
+            math_poly_ntt[label="快速数论变换"];//12
+            math_poly_fft[label="快速傅里叶变换"];//13
+            math_poly_mul[label="多项式乘法"];//14
+
+            math_poly -> {
+                math_poly_newton,
+                    math_poly_lagrange_poly,
+                    math_poly_fwt,
+                    math_poly_ntt,
+                    math_poly_fft
+
+                        /*math_poly_lagrange_poly,
+                          math_poly_fft,
+                          math_poly_ntt,
+                          math_poly_fwt,
+                          math_poly_inv,
+                          math_poly_sqrt,
+                          math_poly_div_mod,
+                          math_poly_ln_exp,
+                          math_poly_newton,
+                          math_poly_mul_eval_inter,
+                          math_poly_tri_func,
+                          math_poly_inv_tri_func*/
+            }
+            {math_poly_ntt,math_poly_fft} -> math_poly_mul;
+            math_poly_mul -> math_poly_inv;
+            math_poly_inv -> {
+                math_poly_ln_exp,
+                    math_poly_div_mod,
+                    math_poly_sqrt
+            }
+            math_poly_ln_exp -> math_poly_tri_func;
+            { math_poly_ln_exp,
+                math_poly_sqrt,
+                math_poly_inv} -> math_poly_inv_tri_func;
+            math_poly_div_mod -> math_poly_mul_eval_inter;
+        }/*}}}*/
+        math_dictionary[label="分段打表"];
         math_expectation[label="概率 & 期望"];
-        math_fibonacci[label="斐波那契数列"];
         math_permutation_group[label="置换群"];
         math_integral[label="数值积分"];
-        math_linear_programming[label="线性规划"];
-        math_simplex[label="单纯形"];
         math_game_theory[label="博弈论"];
         math_misc[label="数学杂项"];
 
         math -> {
             math_base,
                 math_bit,
-                math_bignum,
                 math_quick_pow,
-                math_div,
-                math_modular,
                 math_linear_algebra,
                 math_complex,
-                math_dictionary,
-                math_number_theorem,
+                math_num_theorem,
+                math_array,
                 math_poly,
                 math_comb,
                 math_expectation,
-                math_fibonacci,
                 math_permutation_group,
                 math_integral,
                 math_linear_programming,
-                math_simplex,
                 math_game_theory,
                 math_misc
         }
+        math_complex -> math_poly_fft;
+        math_linear_programming -> math_simplex;
+        math_base -> math_bignum;
+        math_linear_algebra -> math_linear_programming;
+        math_misc -> math_dictionary;
     }/*}}}*/
+
+
     subgraph cluster_ds{/*{{{*/
         ds[label="数据结构"];
 
@@ -405,6 +450,8 @@ digraph{
                 ds_divide_combine
         }
     }/*}}}*/
+
+
     subgraph cluster_gra{/*{{{*/
         gra[label="图论"];
         graph_basic[label="图论基础"];
@@ -596,5 +643,5 @@ digraph{
     //other relations
     search_dfs -> dp_memo;
 
-    label="知识树 v0.3";
+    label="知识树 v0.4";
 }
