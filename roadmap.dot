@@ -558,7 +558,6 @@ digraph{
         graph_flow_max_flow -> graph_bi_gra_match;
     }/*}}}*/
 
-
     subgraph cluster_geometry{/*{{{*/
         geometry[label="计算几何"];
         geometry_2d[label="二维计算几何基础"];
@@ -589,11 +588,15 @@ digraph{
                 geometry_magic
         }
     }/*}}}*/
+
     subgraph cluster_misc{/*{{{*/
         misc[label="杂项"];
         misc_io[label="读入/输出优化"];
-        misc_complexity[label="复杂度"];
         misc_discrete[label="离散化"];
+        misc_largest_matrix[label="悬线法"];
+        misc_josephus[label="约瑟夫问题"];
+        misc_stern_brocot[label="Stern Brocot 树与 Farey 序列"];
+        misc_gray_code[label="格雷码"];
 
         subgraph cluster_misc_offline{
             misc_offline[label="离线算法"];
@@ -619,23 +622,27 @@ digraph{
                     misc_simulated_annealing
             }
         }
-        misc_largest_matrix[label="悬线法"];
-        misc_cc_basic[label="计算理论基础"];
-        misc_endianness[label="字节顺序"];
-        misc_josephus[label="约瑟夫问题"];
-        misc_stern_brocot[label="Stern_Brocot 树与 Farey 序列"];
-        misc_gray_code[label="格雷码"];
+        subgraph cluster_misc_cc{
+            misc_cc[label="理论基础"];
+            misc_cc_basic[label="计算理论基础"];
+            misc_complexity[label="复杂度"];
+            misc_endianness[label="字节顺序"];
+
+            misc_cc -> {
+                misc_cc_basic,
+                    misc_complexity,
+                    misc_endianness
+            }
+        }
 
         misc -> {
             misc_io,
-                misc_complexity,
                 misc_discrete,
                 misc_offline,
                 misc_fractional_programming,
                 misc_random,
                 misc_largest_matrix,
-                misc_cc_basic,
-                misc_endianness,
+                misc_cc,
                 misc_josephus,
                 misc_stern_brocot,
                 misc_gray_code
@@ -646,5 +653,5 @@ digraph{
     //other relations
     search_dfs -> dp_memo;
 
-    label="知识树 v0.6";
+    label="知识树 v1.0";
 }
