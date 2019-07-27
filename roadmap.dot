@@ -9,11 +9,11 @@ digraph{
     root -> string[len=10];
 
     subgraph cluster_search{/*{{{*/
-        search[label="搜索"];
-        search_opt[label="优化/剪枝"];
-        search_dfs[label="深度优先搜索"];
-        search_bfs[label="广度优先搜索"];
-        search_bidir[label="双向搜索"];
+        search[label="搜索",shape=circle,fillcolor=pink];
+        search_opt[label="优化/剪枝",fillcolor="#03A89E"];
+        search_dfs[label="深度优先搜索",fillcolor="#008000"];
+        search_bfs[label="广度优先搜索",fillcolor="#008000"];
+        search_bidir[label="双向搜索",fillcolor="#0000ff"];
         search_heuristic[label="启发式搜索"];
         search_astar[label="A*算法"];
         search_iter[label="迭代加深搜索"];
@@ -37,24 +37,24 @@ digraph{
     subgraph cluster_dp{/*{{{*/
         //bgcolor="green";
 
-        dp[label="动态规划"];
-        dp_memo[label="记忆化搜索"];
-        dp_knapsack[label="背包 DP"];
-        dp_interval[label="区间 DP"];
-        dp_dag[label="DAG 上 DP"];
-        dp_tree[label="树形 DP"];
-        dp_state[label="状圧 DP"];
-        dp_number[label="数位 DP"];
-        dp_plug[label="插头 DP"];
-        dp_misc[label="其他 DP"];
+        dp[label="动态规划",shape=circle,fillcolor=pink];
+        dp_memo[label="记忆化搜索",fillcolor="#008000"];
+        dp_knapsack[label="背包 DP",fillcolor="#03A89E"];
+        dp_interval[label="区间 DP",fillcolor="#03A89E"];
+        dp_dag[label="DAG 上 DP",fillcolor="#03A89E"];
+        dp_tree[label="树形 DP",fillcolor="#0000ff"];
+        dp_state[label="状圧 DP",fillcolor="#0000ff"];
+        dp_number[label="数位 DP",fillcolor="#a000a0"];
+        dp_plug[label="插头 DP",fillcolor="#FF8C00"];
+        dp_misc[label="其他 DP",fillcolor="#a000a0"];
 
         subgraph cluster_dp_opt{
-            dp_opt[label="DP 优化"];
-            dp_opt_bin_mon_que_stack[label="单调队列/单调栈优化"];
-            dp_opt_con_hull_opt[label="斜率优化"];
-            dp_opt_knu_yao_qua_ine[label="四边形不等式优化"];
-            dp_opt_bin_knapsack[label="二进制优化多重背包"];
-            dp_opt_sta_opt[label="状态设计优化"];
+            dp_opt[label="DP 优化",fillcolor="#FF8C00"];
+            dp_opt_bin_mon_que_stack[label="单调队列/单调栈优化",fillcolor="#a000a0"];
+            dp_opt_con_hull_opt[label="斜率优化",fillcolor="#FF8C00"];
+            dp_opt_knu_yao_qua_ine[label="四边形不等式优化",fillcolor="#FF8C00"];
+            dp_opt_bin_knapsack[label="二进制优化多重背包",fillcolor="#a000a0"];
+            dp_opt_sta_opt[label="状态设计优化",fillcolor="#a000a0"];
 
             dp_opt ->{
                 dp_opt_bin_knapsack,
@@ -79,21 +79,21 @@ digraph{
         }
     }/*}}}*/
     subgraph cluster_string{/*{{{*/
-        string[label="字符串"];
-        string_pre[label="前缀函数与 KMP 算法"];
-        string_z[label="Z 函数"];
-        string_trie[label="字典树"];
-        string_auto[label="自动机"];
-        string_ac[label="AC 自动机"];
-        string_sam[label="后缀自动机"];
-        string_pam[label="回文自动机"];
-        string_suf_tree[label="后缀树"];
-        string_manacher[label="Manacher 算法"];
-        string_min[label="最小表示法"];
-        string_sa[label="后缀数组"];
-        string_stl[label="标准库"];
-        string_hash[label="哈希"];
-        string_match[label="字符串匹配"];
+        string[label="字符串",shape=circle,fillcolor=pink];
+        string_pre[label="前缀函数与 KMP 算法",fillcolor="#0000ff"];
+        string_z[label="Z 函数",fillcolor="#a000a0"];
+        string_trie[label="字典树",fillcolor="#0000ff"];
+        string_auto[label="自动机",fillcolor="#a000a0"];
+        string_ac[label="AC 自动机",fillcolor="#a000a0"];
+        string_sam[label="后缀自动机",fillcolor="#a000a0"];
+        string_pam[label="回文自动机",fillcolor="#FF8C00"];
+        string_suf_tree[label="后缀树",fillcolor="#a000a0"];
+        string_manacher[label="Manacher 算法",fillcolor="#a000a0"];
+        string_min[label="最小表示法",fillcolor="#0000ff"];
+        string_sa[label="后缀数组",fillcolor="#a000a0"];
+        string_stl[label="标准库",fillcolor="#03A89E"];
+        string_hash[label="哈希",fillcolor="#0000ff"];
+        string_match[label="字符串匹配",fillcolor="#a000a0"];
 
         string -> {
             string_stl,
@@ -113,20 +113,20 @@ digraph{
 
     }/*}}}*/
     subgraph cluster_math { /*{{{*/
-        math[label="数学"];
-        math_dictionary[label="分段打表"];
-        math_misc[label="数学杂项"];
+        math[label="数学",shape=circle,fillcolor=pink];
+        math_dictionary[label="分段打表",fillcolor="#0000ff"];
+        math_misc[label="数学杂项",fillcolor="#0000ff"];
 
         subgraph cluster_num_theorem{/*{{{*/
-            math_num_theorem[label="初等数论"];
+            math_num_theorem[label="初等数论",fillcolor="#a000a0"];
             subgraph cluster_math_div{/*{{{*/
-                math_div[label="整除及其性质"];
-                math_euler[label="欧拉函数"];
-                math_sieve[label="筛法"];
-                math_euclidean_like[label="类欧几里德算法"];
-                math_gcd[label="最大公约数"];
-                math_fermat[label="欧拉定理 & 费马小定理"];
-                math_prime[label="素数"];
+                math_div[label="整除及其性质",fillcolor="#03A89E"];
+                math_euler[label="欧拉函数",fillcolor="#0000ff"];
+                math_sieve[label="筛法",fillcolor="#0000ff"];
+                math_eucl_like[label="类欧几里德算法",fillcolor="#FF8C00"];
+                math_gcd[label="最大公约数",fillcolor="#03A89E"];
+                math_fermat[label="欧拉定理 & 费马小定理",fillcolor="#0000ff"];
+                math_prime[label="素数",fillcolor="#03A89E"];
 
                 math_div -> {
                         math_gcd,
@@ -135,54 +135,51 @@ digraph{
                     math_prime,
                         math_sieve
                 }[len=3];
-                math_gcd -> math_euclidean_like;
+                math_gcd -> math_eucl_like;
             }/*}}}*/
             subgraph cluster_math_modular{/*{{{*/
-                math_modular[label="同余方程"];
-                math_crt[label="中国剩余定理"];
-                math_bezouts[label="裴蜀定理"];
-                math_inverse[label="乘法逆元"];
-                math_linear_equation[label="线性同余方程"];
-                math_exp_equation[label="指数同余方程"];
-                math_bsgs[label="BSGS/ExBSGS"];
-                math_primitive_root[label="原根"];
-                math_discrete_log[label="离散对数"];
+                math_modular[label="同余方程",fillcolor="#a000a0"];
+                math_crt[label="中国剩余定理",fillcolor="#a000a0"];
+                math_bezouts[label="裴蜀定理",fillcolor="#0000ff"];
+                math_inverse[label="乘法逆元",fillcolor="#0000ff"];
+                math_linear_equa[label="线性同余方程",fillcolor="#a000a0"];
+                math_exp_equa[label="指数同余方程",fillcolor="#FF8C00"];
+                math_bsgs[label="BSGS/ExBSGS",fillcolor="#a000a0"];
+                math_primitive_root[label="原根",fillcolor="#FF8C00"];
+                math_discrete_log[label="离散对数",fillcolor="#FF8C00"];
 
                 math_modular -> {
                     math_inverse,
-                        math_linear_equation,
+                        math_linear_equa,
                         math_primitive_root,
-                        math_exp_equation
+                        math_exp_equa
                 }
-                math_linear_equation -> math_crt;
+                math_linear_equa -> math_crt;
                 //math_inverse -> math_crt;
                 math_primitive_root -> math_discrete_log;
-                math_linear_equation -> math_bezouts ;
-                math_exp_equation -> math_bsgs;
+                math_linear_equa -> math_bezouts ;
+                math_exp_equa -> math_bsgs;
             }/*}}}*/
             subgraph cluster_math_num_the_func{/*{{{*/
-                math_num_the_func[label="数论函数相关"];
-                math_mobius[label=" 莫比乌斯反演"];
-                math_du_sieves[label="杜教筛"];
+                math_num_the_func[label="数论函数相关",fillcolor="#a000a0"];
+                math_mobius[label=" 莫比乌斯反演",fillcolor="#a000a0"];
+                math_du_sieves[label="杜教筛",fillcolor="#FF8C00"];
 
                 math_num_the_func -> {
-                    math_mobius,
-                        math_du_sieves
+                    math_mobius, math_du_sieves
                 }
             }/*}}}*/
 
             math_div -> math_modular;
             math_num_theorem -> {
-                math_div,
-                    math_modular,
-                    math_num_the_func
+                math_div, math_modular, math_num_the_func
             }
         }/*}}}*/
         subgraph cluster_math_linear_algebra{/*{{{*/
-            math_linear_algebra[label="线性代数"];
-            math_gauss[label="高斯消元"];
-            math_matrix[label="矩阵"];
-            math_basis[label="线性基"];
+            math_linear_algebra[label="线性代数",fillcolor="#a000a0"];
+            math_gauss[label="高斯消元",fillcolor="#0000ff"];
+            math_matrix[label="矩阵",fillcolor="#0000ff"];
+            math_basis[label="线性基",fillcolor="#a000a0"];
 
             math_linear_algebra -> {
                 math_matrix,
@@ -190,13 +187,13 @@ digraph{
                     math_basis
             }
         }/*}}}*/
-        math_linear_programming[label="线性规划"];
-        math_simplex[label="单纯形"];
+        math_linear_programming[label="线性规划",fillcolor="#FF8C00"];
+        math_simplex[label="单纯形",fillcolor="#FF8C00"];
         subgraph cluster_math_array{/*{{{*/
-            math_array[label="数列"];
-            math_stirling[label="斯特林数"];
-            math_catalan[label="卡特兰数"];
-            math_fibonacci[label="斐波那契数列"];
+            math_array[label="数列",fillcolor="#0000ff"];
+            math_stirling[label="斯特林数",fillcolor="#FF8C00"];
+            math_catalan[label="卡特兰数",fillcolor="#0000ff"];
+            math_fibonacci[label="斐波那契数列",fillcolor="#0000ff"];
 
             math_array -> {
                 math_stirling,
@@ -205,11 +202,11 @@ digraph{
             };
         }/*}}}*/
         subgraph cluster_math_comb{/*{{{*/
-            math_comb[label="组合数学"];
-            math_combination[label="排列组合"];
-            math_cantor[label="康托展开"];
-            math_inc_exc_pri[label="容斥原理"];
-            math_dra_pri[label="抽屉原理"];
+            math_comb[label="组合数学",fillcolor="#0000ff"];
+            math_combination[label="排列组合",fillcolor="#0000ff"];
+            math_cantor[label="康托展开",fillcolor="#0000ff"];
+            math_inc_exc_pri[label="容斥原理",fillcolor="#a000a0"];
+            math_dra_pri[label="抽屉原理",fillcolor="#a000a0"];
 
             math_comb -> {
                 math_combination,
@@ -221,24 +218,24 @@ digraph{
             math_combination -> math_cantor;
         }/*}}}*/
         subgraph cluster_math_poly{/*{{{*/
-            math_poly[label="多项式"];//1
-            math_poly_inv_tri_func[label="多项式反三角函数"];//3
-            math_poly_mul_eval_inter[label="多项式多点求值|快速插值"];//5
-            math_poly_tri_func[label="多项式三角函数"];//4
-            math_poly_newton[label="多项式牛顿迭代"];//6
-            math_poly_ln_exp[label="多项式对数函数|指数函数"];//7
-            math_poly_div_mod[label="多项式除法|取模"];//8
-            math_poly_sqrt[label="多项式开方"];//9
-            math_poly_inv[label="多项式求逆"];//10
-            math_poly_lagrange_poly[label="拉格朗日插值"];//2
-            math_poly_fwt[label="快速沃尔什变换"];//11
-            math_poly_ntt[label="快速数论变换"];//12
-            math_poly_fft[label="快速傅里叶变换"];//13
-            math_poly_mul[label="多项式乘法"];//14
+            math_poly[label="多项式",fillcolor="#a000a0"];
+            math_poly_inv_tri_func[label="多项式反三角函数",fillcolor="#FF8C00"];
+            math_poly_mul_eval_inter[label="多项式多点求值|快速插值",fillcolor="#FF8C00"];
+            math_poly_tri_func[label="多项式三角函数",fillcolor="#FF8C00"];
+            math_poly_newton[label="多项式牛顿迭代",fillcolor="#FF8C00"];
+            math_poly_ln_exp[label="多项式对数函数|指数函数",fillcolor="#FF8C00"];
+            math_poly_div_mod[label="多项式除法|取模",fillcolor="#a000a0"];
+            math_poly_sqrt[label="多项式开方",fillcolor="#a000a0"];//9
+            math_poly_inv[label="多项式求逆",fillcolor="#a000a0"];//10
+            math_poly_lagr_poly[label="拉格朗日插值",fillcolor="#a000a0"];
+            math_poly_fwt[label="快速沃尔什变换",fillcolor="#a000a0"];
+            math_poly_ntt[label="快速数论变换",fillcolor="#a000a0"];
+            math_poly_fft[label="快速傅里叶变换",fillcolor="#a000a0"];
+            math_poly_mul[label="多项式乘法"];
 
             math_poly -> {
                 math_poly_newton,
-                    math_poly_lagrange_poly,
+                    math_poly_lagr_poly,
                     math_poly_fwt,
                     math_poly_ntt,
                     math_poly_fft
@@ -256,16 +253,16 @@ digraph{
                 math_poly_inv} -> math_poly_inv_tri_func[len=3];
             math_poly_div_mod -> math_poly_mul_eval_inter;
         }/*}}}*/
-        math_complex[label="复数/复平面"];
+        math_complex[label="复数/复平面",fillcolor="#0000ff"];
 
-        math_base[label="进制"];
-        math_bignum[label="高精度"];
-        math_bit[label="位运算"];
-        math_quick_pow[label="快速幂"];
-        math_expectation[label="概率 & 期望"];
-        math_permutation_group[label="置换群"];
-        math_integral[label="数值积分"];
-        math_game_theory[label="博弈论"];
+        math_base[label="进制",fillcolor="#03A89E"];
+        math_bignum[label="高精度",fillcolor="#03A89E"];
+        math_bit[label="位运算",fillcolor="#03A89E"];
+        math_quick_pow[label="快速幂",fillcolor="#008000"];
+        math_expectation[label="概率 & 期望",fillcolor="#a000a0"];
+        math_permutation_group[label="置换群",fillcolor="#FF8C00"];
+        math_integral[label="数值积分",fillcolor="#FF0000"];
+        math_game_theory[label="博弈论",fillcolor="#a000a0"];
 
         math -> {
             math_base,
@@ -291,37 +288,37 @@ digraph{
         math_linear_algebra -> math_linear_programming;
     }/*}}}*/
     subgraph cluster_ds{/*{{{*/
-        ds[label="数据结构"];
-        ds_stack[label="栈"];
-        ds_queue[label="队列"];
-        ds_linked_list[label="链表"];
-        ds_hash[label="哈希表"];
-        ds_dsu[label="并查集"];
-        ds_monotonous_stack[label="单调栈"];
-        ds_monotonous_queue[label="单调队列"];
-        ds_sparse_table[label="ST 表"];
-        ds_bit[label="树状数组"];
-        ds_segment[label="线段树"];
-        ds_segment_tree_beats[label="线段树 & 区间历史最值"];
+        ds[label="数据结构",shape=circle,fillcolor=pink];
+        ds_stack[label="栈",fillcolor="#008000"];
+        ds_queue[label="队列",fillcolor="#008000"];
+        ds_linked_list[label="链表",fillcolor="#008000"];
+        ds_hash[label="哈希表",fillcolor="#0000ff"];
+        ds_dsu[label="并查集",fillcolor="#03A89E"];
+        ds_monotonous_stack[label="单调栈",fillcolor="#0000ff"];
+        ds_monotonous_queue[label="单调队列",fillcolor="#0000ff"];
+        ds_sparse_table[label="ST 表",fillcolor="#0000ff"];
+        ds_bit[label="树状数组",fillcolor="#0000ff"];
+        ds_segment[label="线段树",fillcolor="#0000ff"];
+        ds_segment_tree_beats[label="线段树 & 区间历史最值",fillcolor="#a000a0"];
         ds_dividing[label="划分树"];
-        ds_odt[label="珂朵莉树"];
-        ds_lct[label="Link Cut Tree"];
+        ds_odt[label="珂朵莉树",fillcolor=""];
+        ds_lct[label="Link Cut Tree",fillcolor="#FF8C00"];
         ds_ett[label="Euler Tour Tree"];
-        ds_divide_combine[label="析合树"];
-        ds_k_dtree[label="K-D tree"];
+        ds_divide_combine[label="析合树",fillcolor="#FF8C00"];
+        ds_k_dtree[label="K-D tree",fillcolor="#a000a0"];
 
         subgraph cluster_ds_pbds{
-            ds_pbds[label="pb_ds"];
-            ds_pb_ds_priority_queue[label="__gnu_pbds::priority_queue"];
+            ds_pbds[label="pb_ds",fillcolor="#0000ff"];
+            ds_pb_ds_priority_queue[label="__gnu_pbds::priority_queue",fillcolor="#0000ff"];
 
             ds_pbds -> ds_pb_ds_priority_queue;
         }
         subgraph cluster_ds_heap{
-            ds_heap[label="堆"];
-            ds_binary_heap[label="二叉堆"];
-            ds_merge_heap[label="可并堆"];
-            ds_pairing_heap[label="配对堆"];
-            ds_leftist_tree[label="左偏树"];
+            ds_heap[label="堆",fillcolor="#0000ff"];
+            ds_binary_heap[label="二叉堆",fillcolor="#0000ff"];
+            ds_merge_heap[label="可并堆",fillcolor="#a000a0"];
+            ds_pairing_heap[label="配对堆",fillcolor="#a000a0"];
+            ds_leftist_tree[label="左偏树",fillcolor="#a000a0"];
 
             ds_heap -> {
                 ds_binary_heap,
@@ -331,14 +328,14 @@ digraph{
             ds_merge_heap -> ds_leftist_tree;
         }
         subgraph cluster_ds_bst{
-            ds_bst[label="二叉搜索树/平衡树"];
-            ds_treap[label="Treap"];
-            ds_splay[label="Splay"];
-            ds_wblt[label="WBLT"];
-            ds_sbt[label="Size Balanced Tree"];
-            ds_avl[label="AVL 树"];
-            ds_scapegoat[label="替罪羊树"];
-            ds_cartesian_tree[label="笛卡尔树"];
+            ds_bst[label="二叉搜索树/平衡树",fillcolor="#a000a0"];
+            ds_treap[label="Treap",fillcolor="#a000a0"];
+            ds_splay[label="Splay",fillcolor="#a000a0"];
+            ds_wblt[label="WBLT",fillcolor="#a000a0"];
+            ds_sbt[label="Size Balanced Tree",fillcolor="#a000a0"];
+            ds_avl[label="AVL 树",fillcolor="#a000a0"];
+            ds_scapegoat[label="替罪羊树",fillcolor="#a000a0"];
+            ds_cartesian_tree[label="笛卡尔树",fillcolor="#a000a0"];
 
             ds_bst -> {
                 ds_treap,
@@ -351,11 +348,11 @@ digraph{
             }[len=4];
         }
         subgraph cluster_ds_dsids{
-            ds_dsids[label="树套树"];
-            ds_seg_in_seg[label="线段树套线段树"];
-            ds_seg_in_balanced[label="平衡树套线段树"];
-            ds_balanced_in_seg[label="线段树套平衡树"];
-            ds_persistent_in_bit[label="树状数组套主席树"];
+            ds_dsids[label="树套树",fillcolor="#a000a0"];
+            ds_seg_in_seg[label="线段树套线段树",fillcolor="#a000a0"];
+            ds_seg_in_balanced[label="平衡树套线段树",fillcolor="#a000a0"];
+            ds_balanced_in_seg[label="线段树套平衡树",fillcolor="#a000a0"];
+            ds_persistent_in_bit[label="树状数组套主席树",fillcolor="#a000a0"];
 
             ds_dsids -> {
                 ds_seg_in_seg,
@@ -365,12 +362,12 @@ digraph{
             }[len=4];
         }
         subgraph cluster_ds_persis{
-            ds_persis[label="可持久化数据结构"];
-            ds_persistent_seg[label="可持久化线段树"];
-            ds_persistent_block_array[label="可持久化块状数组"];
-            ds_persistent_balanced[label="可持久化平衡树"];
-            ds_persistent_trie[label="可持久化字典树"];
-            ds_persistent_heap[label="可持久化可并堆"];
+            ds_persis[label="可持久化数据结构",fillcolor="#a000a0"];
+            ds_persistent_seg[label="可持久化线段树",fillcolor="#a000a0"];
+            ds_persistent_block_array[label="可持久化块状数组",fillcolor="#a000a0"];
+            ds_persistent_balanced[label="可持久化平衡树",fillcolor="#FF8C00"];
+            ds_persistent_trie[label="可持久化字典树",fillcolor="#a000a0"];
+            ds_persistent_heap[label="可持久化可并堆",fillcolor="#FF8C00"];
 
             ds_persis -> {
                 ds_persistent_seg,
@@ -381,14 +378,14 @@ digraph{
             }
         }
         subgraph cluster_ds_block{
-            ds_block[label="块状数据结构"];
-            ds_square_root_decomposition[label="分块思想"];
-            ds_block_list[label="块状链表"];
-            ds_block_array[label="块状数组"];
-            ds_tree_decompose[label="树分块"];
+            ds_block[label="块状数据结构",fillcolor="#0000ff"];
+            ds_square_root_decomp[label="分块思想",fillcolor="#0000ff"];
+            ds_block_list[label="块状链表",fillcolor="#a000a0"];
+            ds_block_array[label="块状数组",fillcolor="#0000ff"];
+            ds_tree_decompose[label="树分块",fillcolor="#a000a0"];
 
             ds_block -> {
-                ds_square_root_decomposition,
+                ds_square_root_decomp,
                     ds_block_list,
                     ds_block_array,
                     ds_tree_decompose
@@ -429,27 +426,27 @@ digraph{
         //ds_merge_heap -> ds_persistent_heap;
     }/*}}}*/
     subgraph cluster_gra{/*{{{*/
-        gra[label="图论"];
-        graph_basic[label="图论基础"];
-        graph_traverse[label="图的遍历"];
-        graph_matrix_tree[label="矩阵树定理"];
-        graph_mst[label="最小生成树"];
-        graphst[label="最小树形图"];
-        graph_shortest_path[label="最短路"];
-        graph_differential_constraints[label="差分约束"];
-        graph_kth_path[label="k 短路"];
-        graph_min_circle[label="最小环"];
-        graph_color[label="图的着色"];
+        gra[label="图论",shape=circle,fillcolor=pink];
+        graph_basic[label="图论基础",fillcolor="#008000"];
+        graph_traverse[label="图的遍历",fillcolor="#008000"];
+        graph_matrix_tree[label="矩阵树定理",fillcolor="#a000a0"];
+        graph_mst[label="最小生成树",fillcolor="#03A89E"];
+        graphst[label="最小树形图",fillcolor="#a000a0"];
+        graph_shortest_path[label="最短路",fillcolor="#0000ff"];
+        graph_diff_constraints[label="差分约束",fillcolor="#0000ff"];
+        graph_kth_path[label="k 短路",fillcolor="#a000a0"];
+        graph_min_circle[label="最小环",fillcolor="#0000ff"];
+        graph_color[label="图的着色",fillcolor="#a000a0"];
 
         subgraph cluster_gra_spe_gra{
-            gra_spe_gra[label="特殊图"];
-            graph_euler[label="欧拉图"];
-            graph_planar[label="平面图"];
-            graph_hamilton[label="哈密顿图"];
-            graph_bi_graph[label="二分图"];
-            graph_dag[label="有向无环图"];
-            graph_topo[label="拓扑排序"];
-            graph_bi_gra_match[label="二分图匹配"];
+            gra_spe_gra[label="特殊图",fillcolor="#a000a0"];
+            graph_euler[label="欧拉图",fillcolor="#a000a0"];
+            graph_planar[label="平面图",fillcolor="#a000a0"];
+            graph_hamilton[label="哈密顿图",fillcolor="#a000a0"];
+            graph_bi_graph[label="二分图",fillcolor="#a000a0"];
+            graph_dag[label="有向无环图",fillcolor="#0000ff"];
+            graph_topo[label="拓扑排序",fillcolor="#03A89E"];
+            graph_bi_gra_match[label="二分图匹配",fillcolor="#a000a0"];
 
             gra_spe_gra -> {
                 graph_euler,
@@ -461,12 +458,12 @@ digraph{
 
         }
         subgraph cluster_gra_flow{
-            gra_flow[label="网络流"];
-            graph_flow_node[label="拆点"];
-            graph_flow_max_flow[label="最大流"];
-            graph_flow_min_cut[label="最小割"];
-            graph_flow_min_cost[label="费用流"];
-            graph_flow_bound[label="上下界网络流"];
+            gra_flow[label="网络流",fillcolor="#a000a0"];
+            graph_flow_node[label="拆点",fillcolor="#a000a0"];
+            graph_flow_max_flow[label="最大流",fillcolor="#a000a0"];
+            graph_flow_min_cut[label="最小割",fillcolor="#a000a0"];
+            graph_flow_min_cost[label="费用流",fillcolor="#a000a0"];
+            graph_flow_bound[label="上下界网络流",fillcolor="#FF8C00"];
 
             gra_flow -> {
                 graph_flow_node,
@@ -477,11 +474,11 @@ digraph{
             }
         }
         subgraph cluster_gra_com{
-            gra_com[label="连通性相关"];
-            graph_scc[label="强连通分量"];
-            graph_bcc[label="双连通分量"];
-            graph_bridge[label="割点和桥"];
-            graph_2_sat[label="2-SAT"];
+            gra_com[label="连通性相关",fillcolor="#0000ff"];
+            graph_scc[label="强连通分量",fillcolor="#0000ff"];
+            graph_bcc[label="双连通分量",fillcolor="#0000ff"];
+            graph_bridge[label="割点和桥",fillcolor="#0000ff"];
+            graph_2_sat[label="2-SAT",fillcolor="#a000a0"];
 
             gra_com -> {
                 graph_scc,
@@ -491,18 +488,18 @@ digraph{
             }
         }
         subgraph cluster_gra_tree{
-            gra_tree[label="树上问题"];
-            graph_tree_basic[label="树基础"];
-            graph_lca[label="最近公共祖先"];
-            graph_dfs_order[label="DFS 序"];
-            graph_tree_misc[label="树的其他问题"];
+            gra_tree[label="树上问题",fillcolor="#0000ff"];
+            graph_tree_basic[label="树基础",fillcolor="#0000ff"];
+            graph_lca[label="最近公共祖先",fillcolor="#0000ff"];
+            graph_dfs_order[label="DFS 序",fillcolor="#0000ff"];
+            graph_tree_misc[label="树的其他问题",fillcolor="#0000ff"];
             graph_tree_hash[label="树哈希"];
-            graph_heavy_light_decomposition[label="树链剖分"];
-            graph_tree_divide[label="树分治"];
-            graph_dynamic_tree_divide[label="动态树分治"];
-            graph_virtual_tree[label="虚树"];
-            graph_dsu_on_tree[label="树上启发式合并"];
-            graph_prufer[label="Prufer 序列"];
+            graph_heavy_light_decomp[label="树链剖分",fillcolor="#a000a0"];
+            graph_tree_divide[label="树分治",fillcolor="#a000a0"];
+            graph_dynamic_tree_divide[label="动态树分治",fillcolor="#FF8C00"];
+            graph_virtual_tree[label="虚树",fillcolor="#a000a0"];
+            graph_dsu_on_tree[label="树上启发式合并",fillcolor="#a000a0"];
+            graph_prufer[label="Prufer 序列",fillcolor="#0000ff"];
 
             gra_tree -> {
                 graph_tree_basic,
@@ -510,7 +507,7 @@ digraph{
                     graph_dfs_order,
                     graph_tree_misc,
                     graph_tree_hash,
-                    graph_heavy_light_decomposition,
+                    graph_heavy_light_decomp,
                     graph_tree_divide,
                     graph_virtual_tree,
                     graph_dsu_on_tree
@@ -518,7 +515,7 @@ digraph{
             graph_tree_divide -> graph_dynamic_tree_divide;
             graph_tree_misc -> graph_prufer;
         }
-        graph_misc[label="图论杂项"];
+        graph_misc[label="图论杂项",fillcolor="#0000ff"];
 
         gra -> {
             graph_basic,
@@ -534,7 +531,7 @@ digraph{
                 graph_misc
         };
         graph_basic -> graph_traverse;
-        graph_shortest_path -> graph_differential_constraints;
+        graph_shortest_path -> graph_diff_constraints;
         graph_misc -> graph_color;
         graph_shortest_path -> graph_kth_path;
         graph_dag -> graph_topo;
@@ -542,17 +539,17 @@ digraph{
         graph_flow_max_flow -> graph_bi_gra_match;
     }/*}}}*/
     subgraph cluster_geometry{/*{{{*/
-        geometry[label="计算几何"];
+        geometry[label="计算几何",shape=circle,fillcolor=pink];
         geometry_2d[label="二维计算几何基础"];
         geometry_3d[label="三维计算几何基础"];
         geometry_distance[label="距离"];
         geometry_pick[label="Pick 定理"];
         geometry_triangulation[label="三角剖分"];
-        geometry_convex_hull[label="凸包"];
+        geometry_convex_hull[label="凸包",fillcolor="#a000a0"];
         geometry_scanning[label="扫描线"];
-        geometry_rotating_calipers[label="旋转卡壳"];
+        geometry_rotating_calipers[label="旋转卡壳",fillcolor="#a000a0"];
         geometry_half_plane_intersection[label="半平面交"];
-        geometry_nearest_points[label="平面最近点对"];
+        geometry_nearest_points[label="平面最近点对",fillcolor="#a000a0"];
         geometry_random_incremental[label="随机增量法"];
         geometry_magic[label="计算几何杂项"];
 
@@ -572,8 +569,8 @@ digraph{
         };
     }/*}}}*/
     subgraph cluster_misc{/*{{{*/
-        misc[label="杂项"];
-        misc_io[label="读入/输出优化"];
+        misc[label="杂项",shape=circle,fillcolor=pink];
+        misc_io[label="读入/输出优化",fillcolor="#03A89E"];
         misc_discrete[label="离散化"];
         misc_largest_matrix[label="悬线法"];
         misc_josephus[label="约瑟夫问题"];
@@ -581,10 +578,10 @@ digraph{
         misc_gray_code[label="格雷码"];
 
         subgraph cluster_misc_offline{
-            misc_offline[label="离线算法"];
-            misc_cdq_divide[label="CDQ 分治"];
-            misc_parallel_binsearch[label="整体二分"];
-            misc_mo_algo[label="莫队算法"];
+            misc_offline[label="离线算法",fillcolor="#0000ff"];
+            misc_cdq_divide[label="CDQ 分治",fillcolor="#0000ff"];
+            misc_parallel_binsearch[label="整体二分",fillcolor="#0000ff"];
+            misc_mo_algo[label="莫队算法",fillcolor="#0000ff"];
 
             misc_offline -> {
                 misc_cdq_divide,
@@ -592,12 +589,12 @@ digraph{
                     misc_mo_algo
             }[len=3];
         }
-        misc_fractional_programming[label="分数规划"];
+        misc_fractional_programming[label="分数规划",fillcolor="#0000ff"];
         subgraph cluster_misc_random{
             misc_random[label="随机化"];
             misc_random_func[label="随机函数"];
-            misc_hill_climbing[label="爬山算法"];
-            misc_simulated_annealing[label="模拟退火"];
+            misc_hill_climbing[label="爬山算法",fillcolor="#a000a0"];
+            misc_simulated_annealing[label="模拟退火",fillcolor="#a000a0"];
             misc_random -> {
                 misc_random_func,
                     misc_hill_climbing,
@@ -634,5 +631,5 @@ digraph{
     //other relations
     search_dfs -> dp_memo;
 
-    label="知识树 v1.0.1";
+    label="知识树 v1.1.0";
 }
